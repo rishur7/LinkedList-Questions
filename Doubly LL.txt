@@ -1,0 +1,55 @@
+package LLquest;
+import java.util.Scanner;
+public class DoublyLL {
+Node head;
+Node tail;
+void add(int data)
+{
+Node toAdd = new Node(data);
+if(head==null)
+{
+head=toAdd;
+tail=head; 
+head.prev=null;
+tail.next=null;
+}
+else
+{
+tail.next=toAdd;
+toAdd.prev=tail;
+tail=toAdd;
+tail.next=null;
+}
+}
+void print()
+{
+Node temp=head;
+while(temp!=null)
+{
+System.out.println(temp.data+" ");
+temp=temp.next;
+}
+}
+static class Node{
+int data;
+Node next;
+Node prev;
+Node(int d){
+data=d;
+next=null;
+prev=null;
+}
+}
+public static void main(String[] args) {
+		DoublyLL ll = new DoublyLL();
+		Scanner sc= new Scanner(System.in);
+		int n= sc.nextInt();
+		int e;
+	for (int i=0;i<n;i++) 	
+	{
+	e=sc.nextInt();
+	ll.add(e);
+	}
+	ll.print();
+	}
+	}

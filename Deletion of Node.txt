@@ -1,0 +1,77 @@
+package LLquest;
+import java.util.Scanner;
+public class DeletionOfKey {
+	Node head;
+	void add(int data)
+	{
+	Node toAdd = new Node(data);
+	if(head==null)
+	{
+	head=toAdd;
+	}
+	else
+	{
+	Node temp=head;
+	while(temp.next!=null)
+	{
+	temp=temp.next;
+	}
+	temp.next=toAdd;
+	}
+	}
+public void delete()
+	{
+	Scanner sc= new Scanner(System.in);
+	int key=sc.nextInt();
+	Node PrevNode=head;
+	Node CurrNode=head;
+	if (CurrNode.data==key)
+	{
+	head=CurrNode.next;
+	return;
+	}
+	while(CurrNode!=null&&CurrNode.data!=key)
+	{
+	PrevNode=CurrNode;
+	CurrNode=CurrNode.next; //curr node me data ajaega deletion vala
+	}
+	if(CurrNode!=null)
+	PrevNode.next=CurrNode.next;
+	if(CurrNode==null)
+	{
+	System.out.println("Not Found");
+	}
+	}
+	void print()
+	{
+	Node temp=head;
+	System.out.println("Final list is:-");
+	while(temp!=null)
+	{
+	System.out.println(temp.data+" ");
+	temp=temp.next;
+	}
+	}
+	static class Node{
+	int data;
+	Node next;
+	Node(int d){
+	data=d;
+	next=null;
+	}
+	}
+	public static void main(String[] args) {
+			DeletionOfKey ll = new DeletionOfKey();
+			Scanner sc= new Scanner(System.in);
+			int n= sc.nextInt();
+			int e;
+		for (int i=0;i<n;i++) 	
+		{
+		e=sc.nextInt();
+		ll.add(e);
+		}
+		ll.delete();
+		ll.print();
+		sc.close();
+		}
+		}

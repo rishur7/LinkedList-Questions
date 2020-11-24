@@ -1,0 +1,73 @@
+package LLquest;
+import java.util.*;
+public class DeletionCircularLL {
+	Node head=null;
+	Node tail=null;
+	void add(int data)
+	{
+	Node toAdd = new Node(data);
+	if(head==null)
+	{
+	head=toAdd;
+	tail=toAdd;
+	toAdd.next=head;
+	return;
+	}
+	else
+	{
+	tail.next=toAdd;
+	tail=toAdd;
+	tail.next=head;
+	}
+	}
+	void delete()
+	{
+		Scanner sc=new Scanner(System.in);
+		int key=sc.nextInt();
+		while(head!=null && head.data==key)
+		{
+		head=head.next;
+		}
+		Node temp=head;
+		do
+		{
+		if(temp.next.data==key)
+		temp.next=temp.next.next;
+		else
+		temp=temp.next;
+	}while(temp!=head && temp.next!=head);
+	}
+	void print()
+	{
+	Node temp=head;
+	do
+	{
+	System.out.println(temp.data+" ");
+	temp=temp.next;
+	}while(temp!=head); //this condition cuz vapas ghum ke circular LL head ko point kregi means end agya LL ka
+	}
+	static class Node{
+		int data;
+		Node next;
+		Node(int d)
+		{
+		data=d;
+		next=null;
+		}
+	}
+
+		public static void main(String[] args) {
+			DeletionCircularLL ll = new DeletionCircularLL();
+			int e,n;
+			Scanner sc=new Scanner(System.in);
+			n=sc.nextInt();
+			for(int i=0;i<n;i++)
+			{
+			e=sc.nextInt();
+			ll.add(e);
+			}
+			ll.delete();
+			ll.print();
+	sc.close();
+		}
+	}
